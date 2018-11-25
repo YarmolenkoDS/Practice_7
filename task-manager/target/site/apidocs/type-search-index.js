@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"ua.edu.sumdu.ta.yarmolenko.pr6","l":"AbstractTaskList"},{"p":"ua.edu.sumdu.ta.yarmolenko.pr6","l":"ArrayTaskList"},{"p":"ua.edu.sumdu.ta.yarmolenko.pr6","l":"LinkedListNode"},{"p":"ua.edu.sumdu.ta.yarmolenko.pr6","l":"LinkedTaskList"},{"p":"ua.edu.sumdu.ta.yarmolenko.pr6","l":"Task"}]
