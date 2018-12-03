@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static junit.framework.TestCase.assertEquals;
+
 
 public class WebSiteTest {
 
@@ -42,8 +44,8 @@ public class WebSiteTest {
             }
         }
 
-        WebElement googleResults = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
+ //       WebElement googleResults = (new WebDriverWait(driver, 10))
+  //              .until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
 
         List<WebElement> foundElements = driver.findElements(By.xpath("//*[@id='rso']//a/h3"));
 
@@ -59,13 +61,16 @@ public class WebSiteTest {
         }
 
         if (!ncSumyUkrFound) {
-            //if not found - then go to direct link
-            driver.get("http://www.netcracker.com/ukr/vacancies");
+            driver.get("https://www.netcracker.com/careers/open-positions");
         }
 
         //Screenshot:
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("target//" + driver.getTitle() + ".png"));
+
+        List<WebElement> openPositionsList = driver.findElements(By.xpath("//*[@id='positionslist']/div/h3"));
+
+        assertEquals(Integer.parseInt((driver.findElement(By.xpath("//*[@id='jobcount']"))).getText()),openPositionsList.size());
     }
 
     private WebElement tryToFindAndClickElement(String searchString) {
@@ -81,8 +86,7 @@ public class WebSiteTest {
         }
 
         //This is xpath for Google search suggestions
-        List<WebElement> listGoogleSuggestions = driver.findElement(By.xpath("//ul[@role='listbox']")) //xpath statements could be better to be set as private static final String
-                .findElements(By.xpath("//li[@role='presentation']"));
+        List<WebElement> listGoogleSuggestions = driver.findElements(By.xpath("//li[@role='presentation']"));
 
         for (WebElement we : listGoogleSuggestions) {
             String result = we.getText();
